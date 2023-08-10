@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <form id="signupform">
+        <form method="POST" action="/submit-form" id="signupform">
             <h1>Group Chat App</h1>
             <label for="name">Username : </label>
             <input type="text" id="name" name="name" required>
@@ -24,6 +24,30 @@
             <input type="submit" value="Sign Up">
         </form>
     </div>
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script>
+        async function signup(e){
+            e.preventDefault();
+
+            const signUpDetails={
+                name: e.target.name.value,
+                email: e.target.email.value,
+                mobile:e.target.mobile.value,
+                password: e.target.password.value
+            };
+            try{
+                const response = await axios.post('/submit-form', signUpDetails);
+                // if (response.status===201){
+                //     alert(response.data.message);
+                //     alert('Signup successfull! Please login');
+                // }
+                alert('Signup successfull! Please login');
+            } catch(err){
+                console.log(err.message);
+                alert('User already signed up. Please go to login page.',err.message)
+            }
+        }
+        document.getElementById('signupform').addEventListener('submit',signup);
+    </script>
 </body>
 </html>
