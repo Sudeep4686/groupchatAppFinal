@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' cdnjs.cloudflare.com 'unsafe-inline';">
+
+  <title>Login</title>
+</head>
+<body>
+  <div class="container">
+  <form id="loginForm" onsubmit="login(event)">
+    <h1>Group Chat App</h1>
+    <h2>Login</h2>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+    <input type="submit" value="Login">
+  </form>
+    <p>New User? SignUp now - <a href="/">Sign up</a></p>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+  <script>
+    async function login(e) {
+      e.preventDefault();
+
+      const LoginDetails = {
+        email: e.target.email.value,
+        password: e.target.password.value
+      };
+
+      console.log(LoginDetails);
+
+      try {
+        const response = await axios.post('/user/login', LoginDetails);
+        if (response.status === 200) {
+          alert(`${response.data.message}`);
+          localStorage.setItem('token', response.data.token)
+          window.location.href = "chat.html";
+        }
+      } catch (err) {
+          alert(`${err.response.data.message}`);
+          console.log("error occured during login")
+        }
+    }
+    document.getElementById('loginForm').addEventListener('submit', login);
+</script>
+  
+
+</body>
+</html>

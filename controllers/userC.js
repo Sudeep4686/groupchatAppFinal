@@ -1,25 +1,12 @@
 const bodyparser = require('body-parser');
 const User = require('../models/user');
-<<<<<<< HEAD
 const bcrypt = require('bcrypt');
-=======
->>>>>>> dc158b9e757f3958b93fe80d85d373af8d96c493
 
-async function insertData(req,res){
-    console.log(req.body, "Data Posting");
-    if (!req.body.name || !req.body.email ||!req.body.mobile || !req.body.password){
-        console.log("error");
-        return res.status(400).send({
-            message:"please fill all the details"
-        })
-    }
-<<<<<<< HEAD
-    // const obj = {
-    //     name:req.body.name,
-    //     email:req.body.email,
-    //     mobile:req.body.mobile,
-    //     password:req.body.password
-    // }
+function generateToken(id, name) {
+    return jwt.sign({ userId: id, name: name }, 'secretkey');
+}
+
+async function signUp(req,res){
     try{
         const {name,email,mobile,password } = req.body;
         console.log("recieved data: ",name ,email,mobile,password);
@@ -58,7 +45,7 @@ async function login(req,res){
                     throw new Error("Something went wrong")
                 }
                     if(result===true){
-                        res.status(200).json({success : true, message:"User Logged in successfully",token: generateToken(user.id,user.ispremiumuser)});
+                        res.status(200).json({success : true, message:"User Logged in successfully"});
                     }else{
                         return res.status(400).json({success:false,message:"Incorrect password"})
                     }
@@ -71,24 +58,6 @@ async function login(req,res){
         console.log("error : ", error);
         return res.status(500).send({message:"Internal Server Error"});
     }
-=======
-    const obj = {
-        name:req.body.name,
-        email:req.body.email,
-        mobile:req.body.mobile,
-        password:req.body.password
-    }
-    try{
-        const data = await User.create(obj)
-        // console.log(data,"DATA OBJ");
-        res.redirect('/');
-        
-    }catch(err){
-        res.status(500).send(err);
-        console.log("could not send the data");
-    }
-
->>>>>>> dc158b9e757f3958b93fe80d85d373af8d96c493
 }
 
-module.exports={insertData};
+module.exports={signUp,login,generateToken};
