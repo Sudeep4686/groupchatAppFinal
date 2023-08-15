@@ -1,6 +1,9 @@
 const bodyparser = require('body-parser');
 const User = require('../models/user');
+<<<<<<< HEAD
 const bcrypt = require('bcrypt');
+=======
+>>>>>>> dc158b9e757f3958b93fe80d85d373af8d96c493
 
 async function insertData(req,res){
     console.log(req.body, "Data Posting");
@@ -10,6 +13,7 @@ async function insertData(req,res){
             message:"please fill all the details"
         })
     }
+<<<<<<< HEAD
     // const obj = {
     //     name:req.body.name,
     //     email:req.body.email,
@@ -67,6 +71,24 @@ async function login(req,res){
         console.log("error : ", error);
         return res.status(500).send({message:"Internal Server Error"});
     }
+=======
+    const obj = {
+        name:req.body.name,
+        email:req.body.email,
+        mobile:req.body.mobile,
+        password:req.body.password
+    }
+    try{
+        const data = await User.create(obj)
+        // console.log(data,"DATA OBJ");
+        res.redirect('/');
+        
+    }catch(err){
+        res.status(500).send(err);
+        console.log("could not send the data");
+    }
+
+>>>>>>> dc158b9e757f3958b93fe80d85d373af8d96c493
 }
 
 module.exports={insertData};

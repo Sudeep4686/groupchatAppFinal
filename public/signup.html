@@ -37,11 +37,19 @@
             };
             try{
                 const response = await axios.post('/submit-form', signUpDetails);
+<<<<<<< HEAD
                 if (response.status===201){
                     alert(response.data.message);
                     alert('Signup successfull! Please login');
                 }
                 // alert('Signup successfull! Please login');
+=======
+                // if (response.status===201){
+                //     alert(response.data.message);
+                //     alert('Signup successfull! Please login');
+                // }
+                alert('Signup successfull! Please login');
+>>>>>>> dc158b9e757f3958b93fe80d85d373af8d96c493
             } catch(err){
                 console.log(err.message);
                 alert('User already signed up. Please go to login page.',err.message)
