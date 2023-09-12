@@ -11,12 +11,10 @@ async function signUp(req,res){
         const {name,email,mobile,password } = req.body;
         console.log("recieved data: ",name ,email,mobile,password);
         const existingUser = await User.findOne({where : {email}});
-
         if(existingUser){
             console.log("User already Exists");
             return res.status(409).send({message : "User already exists" });
         }
-
         const saltrounds = 10;
         bcrypt.hash(password,saltrounds,async(err,hash)=>{
             const user = await User.create({name,email,mobile,password:hash});

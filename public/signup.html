@@ -37,18 +37,13 @@
                 password: e.target.password.value
             };
             try{
-                const response = await axios.post('/submit-form', signUpDetails);
+                // const response = await axios.post('/submit-form', signUpDetails);
+                const response = await axios.post('/user/signup', signUpDetails);
                 if (response.status===201){
                     alert(response.data.message);
                     alert('Signup successfull! Please login');
                 }
                 // alert('Signup successfull! Please login');
-
-                // if (response.status===201){
-                //     alert(response.data.message);
-                //     alert('Signup successfull! Please login');
-                // }
-                alert('Signup successfull! Please login');
             } catch(err){
                 console.log(err.message);
                 alert('User already signed up. Please go to login page.',err.message)
