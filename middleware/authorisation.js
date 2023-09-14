@@ -3,7 +3,8 @@ const User = require('../models/user');
 
 exports.authenticate = async(req,res,next)=>{
     try{
-        const token = req.header('Authorization');
+        const token = req.header("Authorization");
+        console.log("token in auth : ", token)
         if(!token){
             return res.status(401).json({message:"Unauhtorised:Token not provided"});
         }

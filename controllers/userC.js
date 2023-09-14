@@ -1,10 +1,7 @@
 const bodyparser = require('body-parser');
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-function generateToken(id, name) {
-    return jwt.sign({ userId: id, name: name }, 'secretkey');
-}
 
 async function signUp(req,res){
     try{
@@ -30,6 +27,10 @@ async function signUp(req,res){
     }
 }
 
+function generateToken(id, name) {
+    return jwt.sign({ userId: id, name: name }, 'secretkey');
+
+}
 
 async function login(req,res){
     const {email,password} = req.body;
