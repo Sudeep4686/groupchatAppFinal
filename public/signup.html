@@ -39,9 +39,9 @@
             try{
                 // const response = await axios.post('/submit-form', signUpDetails);
                 const response = await axios.post('/user/signup', signUpDetails);
-                console.log("Response:",response.data.response.name);
+                // console.log("Response:",response.data.response.name);
                 if (response.status===201){
-                    alert(response.data.message);
+                    alert(response.data.name);
                     alert('Signup successfull! Please login');
                     window.location.href="login.html";
                 }

@@ -22,30 +22,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
   <script>
-    // async function login(e) {
-    //   e.preventDefault();
-
-    //   const LoginDetails = {
-    //     email: e.target.email.value,
-    //     password: e.target.password.value
-    //   };
-
-    //   console.log(LoginDetails);
-
-    //   try {
-    //     const response = await axios.post('/user/login', LoginDetails);
-    //     console.log("RESPONSE:",response.data)
-    //     if (response.status === 200) {
-    //       alert(`${response.data.message}`);
-    //       localStorage.setItem('token', response.data.token)
-    //       console.log("TOKEN : ", token)
-    //       window.location.href = "chat.html";
-    //     }
-    //   } catch (err) {
-    //       alert(`${err.response.data.message}`);
-    //       console.log("error occured during login")
-    //     }
-    // }
 
     async function login(e) {
     e.preventDefault();
@@ -59,14 +35,13 @@
         logindetails
       );
       if (response.status === 200) {
-        alert(response.data.message);
-        alert("log in successfully");
+        // alert(response.data.message);
         displaymessage(response.data.message,true)
         localStorage.setItem("token", response.data.token);
         window.location.href='chat.html'
       }
     } catch (err) {
-      console.log("error in login",err);
+      console.log("error in login",err.message);
       displaymessage(err.response.data.message, false)
     }
   }

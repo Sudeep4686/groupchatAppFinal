@@ -11,8 +11,9 @@ exports.authenticate = async(req,res,next)=>{
 
         const secretKey = "secretkey";
         const decoded = jwt.verify(token,secretKey);
+        console.log("decoded token :" ,decoded);
         const userId = decoded.userId;
-
+        console.log("userID :",userId);
         const user = await User.findByPk(userId);
         if(!user){
             return res.status(401).json({message:"Unauthorised:User not found"});

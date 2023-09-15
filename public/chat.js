@@ -12,7 +12,7 @@ const id = decodedToken.userId
 
 function showOnScreen(details){
     const chatList = document.getElementById('chats');
-    const chatItem = document.getElementById('li');
+    const chatItem = document.createElement('li');
     chatItem.textContent = `${details.name}: ${details.message}`;
     chatList.appendChild(chatItem);
 }
