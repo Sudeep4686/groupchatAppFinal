@@ -1,3 +1,4 @@
+
 const msgform = document.getElementById('messageForm');
 msgform.addEventListener('submit',sendMessage);
 
@@ -9,6 +10,10 @@ const decodedToken = JSON.parse(decodedPayload);
 
 const username = decodedToken.name
 const id = decodedToken.userId
+
+window.onload=async function(){
+    await getMessage();
+}
 
 function showOnScreen(details){
     const chatList = document.getElementById('chats');
@@ -38,3 +43,25 @@ async function sendMessage(event){
     }
 }
 
+
+async function getMessage(req,res,next){
+    try{
+        const response = await axios.get('http://localhost:2200/message/Chat',
+        {
+            headers:{'Authorization':token}
+        });
+        const details = response.data.message;
+        console.log("Getting messages from the server:",details);
+        const chatList = document.getElementById("chats");
+        chatList.innerHTML = "";
+        if(Array.isArray(details)){
+            details.forEach((element)=>{
+                showOnScreen(element);
+            });
+        }else{
+            console.log("response.data.message is not an array");
+        }
+    }catch(err){
+        console.log("Error while getting messages:",err.message);
+    }
+}

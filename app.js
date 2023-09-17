@@ -15,12 +15,9 @@ const chat = require('./models/chat');
 const app = express();
 
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended:true})); 
+app.use(bodyparser.urlencoded({extended:false})); 
 app.use(express.static('public'));
-app.use(cors({
-    origin:"http://127.0.0.1:2200",
-})
-)
+app.use(cors({origin:"*",methods:["GET","POST","PUT","DELETE"]}))
 
 app.get('/',(req,res)=>{
     res.sendFile(path.join(__dirname,'public','signup.html'));
@@ -30,6 +27,8 @@ app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+User.hasMany(chat);
+chat.belongsTo(User)
 
 app.use('/user', userRouter);
 app.use('/message',ChatsRouter);
