@@ -19,10 +19,13 @@ exports.authenticate = async(req,res,next)=>{
             return res.status(401).json({message:"Unauthorised:User not found"});
         }
 
-        req.user={
-            id:user.id,
-            name:user.name
-        };
+        // req.user={
+        //     id:user.id,
+        //     name:user.name
+        // };
+
+        req.user = user;
+        console.log("User in auth :",user);
         next();
 
     }catch(err){
