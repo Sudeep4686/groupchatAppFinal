@@ -15,7 +15,7 @@ async function signUp(req, res) {
     const saltrounds = 10;
     bcrypt.hash(password, saltrounds, async (err, hash) => {
       if (err) {
-        console.log("sign upp error internal in hashing", err);
+        console.log("sign upp error in hashing", err);
       }
       const user = await User.create({ name, email, mobile, password: hash });
       console.log("new user Created : ", user);
@@ -34,7 +34,6 @@ async function signUp(req, res) {
 }
 
 function generateToken(id, name) {
-
   return jwt.sign({ userId: id, name: name }, "secretkey");
 }
 
@@ -49,7 +48,7 @@ async function login(req, res) {
           throw new Error("Something went wrong");
         }
         if (result === true) {
-          console.log("geenreettaee",generateToken(user[0].id, user[0].name))
+          console.log("generate",generateToken(user[0].id, user[0].name))
           res
             .status(200)
             .json({

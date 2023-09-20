@@ -38,9 +38,17 @@ async function sendMessage(event){
         }
         );
         console.log('Message sent to the server:', response.data.details);
-        setInterval(()=>{
-            location.reload()
-        },1000);
+
+        // Store the message data in localStorage
+        showafterDomContentLoaded({
+            name:response.data.name,
+            message:response.data.message.message,
+        });
+
+
+        // setInterval(()=>{
+        //     location.reload()
+        // },1000);
         msgform.reset();
     }catch(error){
         console.log("Error in sending message",error.message);
@@ -60,8 +68,17 @@ window.onload = async function(){
 }
 
 async function getMessage(req,res,next){
+    let lastmsg = localStorage.getItem("lastmsgg");
+    if (!lastmsg){
+        lastmsg=-1;
+    }
+    console.log("lastmsgg : ",lastmsg);
     try{
-        const response = await axios.get('http://localhost:2200/message/Chat',
+        // const response = await axios.get('http://localhost:2200/message/Chat',
+        // {
+        //     headers:{'Authorization':token}
+        // });
+        const response = await axios.get(`http://localhost:2200/message/Chat?lastmsg=${lastmsg}`,   
         {
             headers:{'Authorization':token}
         });
@@ -69,13 +86,32 @@ async function getMessage(req,res,next){
         console.log("Getting messages from the server:",details);
         const chatList = document.getElementById("chats");
         chatList.innerHTML = "";
-        if(Array.isArray(details)){
-            details.forEach((element)=>{
-                showafterDomContentLoaded(element);
-            });
-        }else{
-            console.log("response.data.message is not an array");
+        console.log("Detailsss : ",details);
+        lastmsg = details[details.length-1].id;
+        localStorage.setItem("lastmsgg",lastmsg);
+        if(details.length){
+            let existingmsgs = JSON.parse(localStorage.getItem("message"));
+            if (!existingmsgs){
+                existingmsgs=[];
+            }
+            const newMessage = [...existingmsgs, ...details];
+            while (newMessage.length > 10){
+                newMessage.shift();
+            }
+            localStorage.setItem("message", JSON.stringify(newMessage));
         }
+        const messages = JSON.parse(localStorage.getItem("message"));
+        messages.forEach((element)=>{
+            showafterDomContentLoaded(element);
+        })
+
+        // if(Array.isArray(details)){
+        //     details.forEach((element)=>{
+        //         showafterDomContentLoaded(element);
+        //     });
+        // }else{
+        //     console.log("response.data.message is not an array");
+        // }
     }catch(err){
         console.log("Error while getting messages:",err.message);
     }

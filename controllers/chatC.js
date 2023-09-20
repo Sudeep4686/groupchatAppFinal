@@ -1,26 +1,25 @@
 const Chat = require('../models/chat');
 const User = require('../models/user');
+const { Op } = require("sequelize");
 
 async function saveMessage(req,res){
     const {message} = req.body;
 
     try{
-        // const newMessage= await Chat.create({
-        //     name:req.user.name,
         const id = req.user.id;
         const name = await User.findOne({where:{id}});
         console.log("NAME :",name);
         const Name = name.name;
         const newMessage = await req.user.createChat({
             message:message,
-            // userId:req.user.id,
             name:Name
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             success:true,
-            message:"Message saved successfully",
-            details:{newMessage,name},
+            // message:"Message saved successfully",
+            // details:{newMessage,name},
+            message:newMessage,
             name:Name
         });
     }catch(error){
@@ -41,11 +40,20 @@ async function getMessage(req,res,next){
 
         const id = req.user.id;
         const name = req.user.name;
+        const lastmsg = req.query.lastmsg;
+
         console.log("id in getMessage:",id);
         console.log("name in getMessage:",name);
-
-        const message = await Chat.findAll();
-
+        console.log("lastmsgg: ",lastmsg);
+        
+        const message = await Chat.findAll({
+            where:{
+                id:{
+                    [Op.gt]:lastmsg,
+                },
+            },
+        });
+        console.log("Messageeee : ",message);
         return res.status(201).json({success:true, message:message , name:name});
     }catch(err){
         console.error("Failed to retrieve chat messages:",err.message)
