@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group Details</title>
+</head>
+<body>
+    <h1>Group Details</h1>
+    <form id="groupMessageForm">
+        <input type="text" name="message" id="message" placeholder="Enter your message" required>
+        <button id="sendButton" type="submit">Send</button>
+    </form>
+    <br>
+    <button id="showUsersButton">Show Users</button>
+    <div id="addUser">
+        <select id="userList"></select>
+    </div>
+    <ul id="groupDropdown"></ul>
+    <h2>Chat Messages</h2>
+    <ul id="chats"></ul>
+
+    <h2>Group Members</h2>
+    <div>
+    <select id="MembersDropdown">
+      <option value="" selected disabled>Select a member</option>
+    </select>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="group.js"></script>
+</body>
+</html>

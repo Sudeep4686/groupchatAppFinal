@@ -5,5 +5,7 @@ const userAuth = require('../middleware/authorisation');
 
 router.post('/Chats',userAuth.authenticate,chatC.saveMessage);
 router.get('/chat',userAuth.authenticate,chatC.getMessage);
+router.get('/group',userAuth.authenticate,chatC.getGroupList);
+router.post('/group',userAuth.authenticate,chatC.createGroup);
 
 module.exports=router;
