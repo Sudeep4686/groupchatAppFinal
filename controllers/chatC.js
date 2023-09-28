@@ -54,6 +54,7 @@ async function getMessage(req,res,next){
                 id:{
                     [Op.gt]:lastmsg,
                 },
+                groupId:null,
             },
         });
         console.log("Messageeee : ",message);

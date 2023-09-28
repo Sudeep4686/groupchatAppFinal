@@ -19,37 +19,62 @@ window.onload = async function (){
     }
 }
 
+// async function sendMessage(event){
+//     event.preventDefault();
+//     const details={
+//         name:username,
+//         message:document.getElementById("message").value,
+//         userId:id,
+//         groupId:groupId,
+//     };
+//     console.log(username,message,id,groupId,"CHecking thr details");
+//     try{
+//         const response=await axios.post(`http://localhost:2200/groups/${groupId}/groupChat`,
+//         details,
+//         {
+//             headers:{Authorization:token},
+//         });
+//         console.log("Message data sent to the server:",response.data.details);
+//         showOnScreen(response.data.details);
+//         msgform.reset();
+//     }catch(error){
+//         console.log("Error in sending the message in group:",error.message)
+//     }
+// } 
+
 async function sendMessage(event){
     event.preventDefault();
-    const details={
+    const details = {
         name:username,
-        message:document.getElementById("message").value,
         userId:id,
         groupId:groupId,
+        message : document.getElementById('message').value,
     };
+    console.log("checking the details:",details)
     try{
-        const response=await axios.post(`http://localhost:2200/groups/${groupId}/groupChat`,
-        details,
+        const response = await axios.post(`http://localhost:2200/groups/${groupId}/groupChat`,details,
         {
-            headers:{Authorization:token},
-        });
-        console.log("Message data sent to the server:",response.data.details);
-        showOnScreen(response.data.details);
+            headers:{'Authorization':token}
+        }
+        );
+        console.log('Message sent to the server:', response);
+        console.log(response.data.message);
+        showOnScreen(response.data.newMessage);
         msgform.reset();
     }catch(error){
-        console.log("Error in sending the message in group:",error.message)
+        console.log("Error in sending message",error.message);
     }
-} 
+}
 
-function showOnScreen(details){
-    const chatList=document.getElementById("chats");
-    const chatItem = document.getElementById("li");
-    chatItem.textContent=`${details.name}:${details.message}`;
+function showOnScreen(element){
+    const chatList = document.getElementById('chats');
+    const chatItem = document.createElement('li');
+    chatItem.textContent = `${element.name} : ${element.message}`;
     chatList.appendChild(chatItem);
 }
 
 async function getMessages(groupId){
-    event.preventDefault();
+    // event.preventDefault();
     try{
         const response = await axios.get(`http://localhost:2200/groups/${groupId}/groupChat`,
         {
@@ -87,7 +112,7 @@ async function showUsers(req,res){
         userList.forEach((user)=>{
             const option = document.createElement('option');
             option.value = user.id;
-            option.text = `${user.id} : ${user.name} : ${user.email} : ${user.phone}`;
+            option.text = `${user.id} : ${user.name} : ${user.email} : ${user.mobile}`;                    
             dropdown.appendChild(option);
         });
         dropdown.selectdIndex = 0;
@@ -139,14 +164,37 @@ function MembersDropdown(groupMembers){
     groupMembers.forEach((user)=>{
         const option = document.createElement("option");
         option.value=user.userId;
-        option.text = `${user.id}:${user.NameOfUser}`;
+        option.text = `${user.id}:${user.userName}`;
         dropdown.appendChild(option);
     });
+}
 
-    const groupDropdown = document.getElementById("groupDropdown");
-    groupDropdown.addEventListener("change",async(event)=>{
-        const selectedGroupId = localStorage.getItem('groupId');
-        groupId=selectedGroupId;
-        await getMessages(groupId);
-    })
+const groupDropdown = document.getElementById("groupDropdown");
+groupDropdown.addEventListener("change",async(event)=>{
+    const selectedGroupId = localStorage.getItem('groupId');
+    groupId=selectedGroupId;
+    await getMessages(groupId);
+})
+
+const removeUserButton = document.getElementById("removeUserFromGroup");
+removeUserButton.style.display="block";
+removeUserButton.addEventListener("click",removeUser);
+
+async function removeUser(){
+    const dropdown = document.getElementById('MembersDropdown');
+    const userId= dropdown.options[dropdown.selectedIndex].value
+    console.log('userId of the user that is to be deleted',userId);
+    console.log("dropdown checking:",dropdown.selectedIndex);
+    try{
+        const details={
+            userId : userId
+        }
+        const response = await axios.post(`http://localhost:2200/groups/${groupId}/removeUser`,details,
+        {
+            headers:{'Authorization':token}
+        })
+        console.log("printing response after removing the user",response);
+    }catch(error){
+        console.log("Error while deleting user : ",error)
+    }
 }

@@ -58,7 +58,7 @@ async function saveMessage(req,res){
         });
 
         console.log("Checking new message details here : ",newMessage);
-        res.status(201).json({success:true,message:"chst saved successfully"});
+        res.status(201).json({success:true,newMessage,message:"chst saved successfully"});
     }catch(error){
         console.log("Error while saving the message:",error);
         res.status(500).json({success:false,error:"Failed to save the message"});
@@ -95,12 +95,14 @@ const getMembers = async (req,res,next)=>{
 async function removeUser(req,res){
     try{
         const userId = req.body.userId;
-        const groupId = req.body.groupId;
+        const groupId = req.params.groupId;
         console.log("checking the groupId,userId : ",userId,groupId);
 
         const remove = await UserGr.destroy({
             where:{GroupId:groupId,UserId:userId},
         });
+
+    
 
         if (remove===0){
             return res.status(404).json({message:"The User was not found in the group."});

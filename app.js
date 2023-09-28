@@ -52,7 +52,7 @@ sequelize.sync({force:false})
     console.log("details synced with database")
 })
 .catch((err)=>{
-    console.log("details could not be synced with database")
+    console.log("details could not be synced with database",err.message)
 })
 
 app.listen(2200,()=>{
