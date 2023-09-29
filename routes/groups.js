@@ -9,5 +9,7 @@ router.get('/userlist',userAuth.authenticate,groupC.getUserList);
 router.post('/adduser',userAuth.authenticate,groupC.AddToGroup);
 router.get('/:groupId/groupMembers',userAuth.authenticate,groupC.getMembers);
 router.post('/:groupId/removeUser',userAuth.authenticate,groupC.removeUser);
+router.get('/:groupId/checkAdmin',userAuth.authenticate,groupC.getAdmin);
+router.put('/:groupId/makeAdmin',userAuth.authenticate,groupC.makeAdmin);
 
 module.exports = router;

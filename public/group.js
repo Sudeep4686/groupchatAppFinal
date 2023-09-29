@@ -16,31 +16,9 @@ window.onload = async function (){
     if (groupId){
         await getMessages(groupId);
         await getGroupMembers(groupId);
+        await checkAdmin(groupId);
     }
 }
-
-// async function sendMessage(event){
-//     event.preventDefault();
-//     const details={
-//         name:username,
-//         message:document.getElementById("message").value,
-//         userId:id,
-//         groupId:groupId,
-//     };
-//     console.log(username,message,id,groupId,"CHecking thr details");
-//     try{
-//         const response=await axios.post(`http://localhost:2200/groups/${groupId}/groupChat`,
-//         details,
-//         {
-//             headers:{Authorization:token},
-//         });
-//         console.log("Message data sent to the server:",response.data.details);
-//         showOnScreen(response.data.details);
-//         msgform.reset();
-//     }catch(error){
-//         console.log("Error in sending the message in group:",error.message)
-//     }
-// } 
 
 async function sendMessage(event){
     event.preventDefault();
@@ -71,6 +49,41 @@ function showOnScreen(element){
     const chatItem = document.createElement('li');
     chatItem.textContent = `${element.name} : ${element.message}`;
     chatList.appendChild(chatItem);
+}
+
+async function checkAdmin(groupId){
+    try{
+        const response = await axios.get(`http://localhost:2200/groups/${groupId}/checkAdmin`,
+        {
+            headers:{Authorization:token},
+        });
+        const admin =  response.data;
+        console.log("Checking the admin",admin);
+        if(admin===1){
+            const showUsersButton = document.getElementById("showUsersButton");
+            showUsersButton.style.display="block";
+            showUsersButton.addEventListener("click",showUsers);
+
+            const makeAdminButton = document.getElementById('makeAdminButton');
+            makeAdminButton.style.display="block";
+            makeAdminButton.addEventListener("click",makeAdmin);
+
+            const removeUserButton=document.getElementById("removeUserFromGroup");
+            removeUserButton.style.display = "block";
+            removeUserButton.addEventListener("click",removeUser);
+        }else{
+            const makeAdminButton = document.getElementById("makeAdminButton");
+            makeAdminButton.style.display="none";
+
+            const removeUserButton=document.getElementById("removeUserFromGroup");
+            removeUserButton.style.display="none";
+
+            const showUsersButton = document.getElementById("showUsersButton");
+            showUsersButton.style.display="none";
+        }
+    }catch(err){
+        console.log("could not fetch admin",err.message);
+    }
 }
 
 async function getMessages(groupId){
@@ -142,6 +155,25 @@ async function showUsers(req,res){
         dropdown.dispatchEvent(new Event('change'));
     }catch(error){
         console.log('Error fetching user list:',error);
+    }
+}
+
+async function makeAdmin(){
+    try{
+        const dropdown = document.getElementById("MembersDropdown");
+        const userId = dropdown.options[dropdown.selectedIndex].value;
+        const details={
+            userId:userId
+        }
+        console.log("Printing the details here:",details);
+
+        const response = await axios.put(`http://localhost:2200/groups/${groupId}/makeAdmin`,
+        {
+            headers:{'Authorization':token},
+        });
+        console.log(response,"congratulations!!! You are an admin now")
+    }catch(err){
+        console.log("error in making an admin",err.message);
     }
 }
 
