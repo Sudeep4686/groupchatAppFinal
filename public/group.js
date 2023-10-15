@@ -158,24 +158,44 @@ async function showUsers(req,res){
     }
 }
 
-async function makeAdmin(){
-    try{
-        const dropdown = document.getElementById("MembersDropdown");
-        const userId = dropdown.options[dropdown.selectedIndex].value;
-        const details={
-            userId:userId
-        }
-        console.log("Printing the details here:",details);
+// async function makeAdmin(){
+//     try{
+//         const dropdown = document.getElementById("MembersDropdown");
+//         const userId = dropdown.options[dropdown.selectedIndex].value;
+//         const details={
+//             userId:userId
+//         }
+//         console.log("Printing the details here:",details);
 
-        const response = await axios.put(`http://localhost:2200/groups/${groupId}/makeAdmin`,
+//         const response = await axios.put(`http://localhost:2200/groups/${groupId}/makeAdmin`,details,
+//         {
+//             headers:{'Authorization':token},
+//         });
+//         console.log(response,"congratulations!!! You are an admin now")
+//     }catch(err){
+//         console.log("error in making an admin",err.message);
+//     }
+// }
+
+async function makeAdmin() {
+    try {
+      const dropdown = document.getElementById("MembersDropdown");
+      const userId = dropdown.options[dropdown.selectedIndex].value;
+      const details = {
+        userId: userId,
+      };
+      console.log(details, "printing the details here");
+      const response = await axios.put(
+        `http://localhost:3004/groups/${groupId}/makeAdmin`,
+        details,
         {
-            headers:{'Authorization':token},
-        });
-        console.log(response,"congratulations!!! You are an admin now")
-    }catch(err){
-        console.log("error in making an admin",err.message);
-    }
+          headers: { Authorization: token },
+        }
+      );
+      console.log(response, " congratulations admin");
+    } catch (err) {}
 }
+  
 
 async function getGroupMembers(){
     try{
@@ -216,7 +236,7 @@ async function removeUser(){
     const dropdown = document.getElementById('MembersDropdown');
     const userId= dropdown.options[dropdown.selectedIndex].value
     console.log('userId of the user that is to be deleted',userId);
-    console.log("dropdown checking:",dropdown.selectedIndex);
+    console.log("selected index in dropdown checking:",dropdown.selectedIndex);
     try{
         const details={
             userId : userId

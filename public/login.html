@@ -5,11 +5,115 @@
 
   <title>Login</title>
 </head>
+<style>
+     body {
+  font-family: Arial, sans-serif;
+  background-image: url("./loginImage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(232, 206, 241, 0.576);
+  border-radius: 5px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  right: 36%;
+  transform: translateY(-50%);
+}
+
+
+h1 {
+    position: absolute;
+  top: 5px;
+  left: center;
+  font-size: 34px;
+  font-weight: bold;
+  color: #081c6e;
+  z-index: 1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form h2{
+  margin-bottom: 3px; 
+}
+
+form h4{
+  margin-top: 0px; 
+  color: rgb(46, 45, 45);
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+input[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #040450;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+  </style>
 <body>
+    <h1>Group Chat App</h1>
   <div class="container">
   <form id="loginForm" onsubmit="login(event)">
-    <h1>Group Chat App</h1>
-    <h2>Login</h2>
+    <h2>Welcome</h2>
+    <h4>Login here to enter chat room</h4>
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" placeholder="Enter your email" required>
 

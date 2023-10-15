@@ -5,6 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group Details</title>
 </head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    button,
+    select {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px auto;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #groupMessageForm input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc; /* Add this line to apply a border */
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button:hover {
+      background-color: #007bff;
+    }
+
+    .button-group {
+      text-align: center;
+    }
+
+    .button-group button {
+      display: inline-block;
+      margin: 0 5px;
+    }
+
+    #groupmembers1 {
+      background-color: #ccc;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    #groupmem {
+      font-family: Georgia, "Times New Roman", Times, serif;
+      font-size: xx-large;
+      font-weight: bold;
+      color: black;
+    }
+    #addUser {
+      display: block;
+    }
+    .chatMessages {
+      max-width: 100%;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #c6ddf8;
+      position: relative;
+      word-wrap: break-word;
+    }
+
+    .chatMessages::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      background-color: #c6ddf8;
+      transform: translateY(-50%) rotate(45deg);
+      left: -5px;
+    }
+
+    .chatMessages span {
+      font-weight: bold;
+    }
+  </style>
 <body>
     <h1>Group Details</h1>
     <form id="groupMessageForm">
@@ -12,7 +107,7 @@
         <button id="sendButton" type="submit">Send</button>
     </form>
     <br>
-    <button id="showUsersButton">Show Users</button>
+    <button id="showUsersButton">Add Users</button>
     <div id="addUser">
         <select id="userList"></select>
     </div>
@@ -32,4 +127,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
     <script src="group.js"></script>
 </body>
+
 </html>

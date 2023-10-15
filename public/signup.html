@@ -5,10 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
 </head>
+  <style>
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("./sigupImage.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: rgba(148, 180, 189, 0.733);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 350px;
+  height: 430px;
+  position: absolute;
+  top: 50%;
+  right: 130px;
+  transform: translateY(-50%);
+}
+
+
+h1 {
+  position: absolute;
+  top: 30px;
+  left: 70px;
+  font-size: 34px;
+  font-weight: bold;
+  color: #fc0707;
+  z-index: 1; /* To place it on top */
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form h2{
+  margin-top: 0px; 
+  color: #8d0404;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #170101;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 16px;
+  text-align: left;
+}
+
+input[type="submit"] {
+  background-color: #0d6122;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #033704;
+}
+
+p {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #200101;
+}
+
+a {
+  text-decoration: none;
+  color: #3e0101;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Additional styles for responsiveness */
+@media (max-width: 768px) {
+  .container {
+    max-width: 80%;
+  }
+}
+  </style>
 <body>
+    <h1> Welcome to Group Chat App</h1>
     <div class="container">
         <form method="POST" action="/submit-form" id="signupform">
-            <h1>Group Chat App</h1>
+            <!-- <h1> Welcome to Group Chat App</h1> -->
+            <h2>SignUp</h2>
             <label for="name">Username : </label>
             <input type="text" id="name" name="name" required>
 

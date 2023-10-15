@@ -115,41 +115,86 @@ async function removeUser(req,res){
     }
 }
 
-const getAdmin = async (req,res,next)=>{
-    try{
-        const userId = req.user.id;
-        const groupId = req.params.groupId;
-        const group = await usergroups.findAll({
-            where:{GroupId:groupId,UserId:userId},
-        });
-        const admin = group.length>0?group[0].isAdmin:null;
-        console.log("Printing the admin value here:",admin);
-        if (admin===true){
-            const isAdmin=1;
-            res.json(isAdmin);
-        }else{
-            res.send("The user is not an admin of this group.");
-        }
-    }catch(err){
-        console.log("Error fecthing the group details",err.message);
-        res.status(500).send("Error fetching group detais")
-    }
-}
+// const getAdmin = async (req,res,next)=>{
+//     try{
+//         const userId = req.user.id;
+//         const groupId = req.params.groupId;
+//         const group = await usergroups.findAll({
+//             where:{GroupId:groupId,UserId:userId},
+//         });
+//         console.log("GROUP LENGTH:",group.length);
+//         const admin = group.length>0?group[0].isAdmin:null;                    
+//         console.log("Printing the admin value here:",admin);
+//         if (admin===true){
+//             const isAdmin=1;
+//             res.json(isAdmin);
+//         }else{
+//             res.send("The user is not an admin of this group.");
+//         }
+//     }catch(err){
+//         console.log("Error fecthing the group details",err.message);
+//         res.status(500).send("Error fetching group detais")
+//     }
+// }
 
-const makeAdmin = async(req,res,next)=>{
-    try{
-        const userId = req.body.userId;
-        const groupId = req.params.groupId;
-        console.log("userId,groupId checking",userId,groupId);
+// const makeAdmin = async(req,res,next)=>{
+//     try{
+//         const userId = req.body.userId;
+//         const groupId = req.params.groupId;
+//         console.log("userId,groupId checking",userId,groupId);
 
-        const admin = await usergroups.update(
-            {isAdmin:true},
-            {where:{GroupId:groupId,UserId:userId}});
-        res.json({admin,message:"Congrats!The user is admin now."})
-    }catch(err){
-        console.log(err.message);
-        res.status(500).json({error:"Internal Server Error"})
+//         const admin = await usergroups.update(
+//             {isAdmin:true},
+//             {where:{GroupId:groupId,UserId:userId}});
+//         res.json({admin,message:"Congrats!The user is admin now."})
+//     }catch(err){
+//         console.log(err.message);
+//         res.status(500).json({error:"Internal Server Error"})
+//     }
+// }
+
+const getAdmin = async (req, res, next) => {
+    try {
+      const userId = req.user.id;
+      const groupId = req.params.groupId;
+      const group = await Groups.findAll({
+        where: { GroupId: groupId, UserId: userId },
+      });
+      const admin = group.length > 0 ? group[0].isAdmin : null;
+      console.log(admin, "printing the admin value");
+      if (admin == true) {
+        const isAdmin = 1;
+        res.json(isAdmin);
+      } else {
+        res.send("The user is not an admin of this group.");
+      }
+    } catch (error) {
+      console.log("Error fetching group details:", error);
+      res.status(500).send("Error fetching group details.");
     }
-}
+  };
+  const makeAdmin=async(req,res,next)=>{
+    try{
+      const userId = req.body.userId;
+      const groupId = req.params.groupId;
+  
+      console.log(userId, groupId, 'printing user and group id');
+  
+      const admin = await Groups.update(
+        { isAdmin: true },
+        { where: { GroupId: groupId, UserId: userId } }
+      );
+  
+      res.json({
+        admin,
+        message: 'Congratulations! The user is now the admin.',
+      });
+  
+    }catch(error){
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
+  
+    }
+  }
 
 module.exports={getUserList,AddToGroup,saveMessage,getMessages,getMembers,removeUser,getAdmin,makeAdmin};

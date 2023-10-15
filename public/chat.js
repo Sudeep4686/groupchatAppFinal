@@ -141,49 +141,6 @@ async function createGroup(event){
 }
 }
 
-// async function showAllGroups(){
-//     try{
-//         const response = await axios.get('http://localhost:2200/message/group',{
-//             headers:{'Authorization':token}
-//         });
-//         console.log("checking the response in showallGroups:",response);
-//         const groups = response.data.groups;
-//         console.log("Consoling the groups : ",groups);
-//         const groupList = document.getElementById('group-list');
-//         // console.log("COnsoling the group list in showallgroups:",groupList);
-//         groupList.innerHTML='';                                                                            
-
-//         if(Array.isArray(groups)){
-//             groups.forEach((group)=>{
-//                 const listItem = document.createElement('li');
-//                 const link = document.createElement('a');
-//                 link.textContent = `${group.groupName}`;
-//                 link.href = `group.html`;
-//                 link.setAttribute('id',group.groupId);
-//                 listItem.appendChild(link);
-//                 groupList.appendChild(listItem);
-    
-//                 link.addEventListener('click',function(event){
-//                     event.preventDefault();
-//                     const groupName = group.groupName;
-//                     console.log("Printing the group name here : ",groupName);
-    
-//                     const groupId = link.getAttribute('id');
-//                     console.log("Printing the groupId here : ",groupId);
-//                     localStorage.setItem('groupId',groupId);
-//                     localStorage.setItem('groupName',groupName);
-    
-//                     window.location.href = `group.html`;
-//                 });
-//             })
-//         }else{
-//             console.log("groups is not an array");
-//         }  
-//     }catch(error){
-//         console.log("Error in fetching the groups",error.message);
-//     }
-// }
-
 async function showAllGroups() {
     try {
       const response = await axios.get('http://localhost:2200/message/group', {
