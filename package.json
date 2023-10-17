@@ -1,4 +1,12 @@
 {
+  "name": "group-chat-application-full",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "atob": "^2.1.2",
     "axios": "^1.4.0",
