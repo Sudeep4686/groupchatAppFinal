@@ -1,4 +1,6 @@
 const express = require('express')
+const dotenv = require("dotenv");
+dotenv.config();
 const path = require('path');
 const bodyparser = require('body-parser');
 const controller = require('./controllers/userC')
