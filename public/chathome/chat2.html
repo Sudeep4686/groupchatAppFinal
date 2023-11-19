@@ -135,28 +135,70 @@
     }
   </style>
 <body>
-    <div id="chatContainer">
-        <div>
-            <h2>Welcome to Chat Room</h2>
-            <div id="chatMessages"></div>
+    <main>
+      <!-- <p id="menu">
+        <button 
+        class="btn"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#user-container"
+        id="menu-btn"
+        >
+          <span class="material-symbols-outlined"> menu </span>
+        </button>
+      </p> -->
+      <div id="user-container" class="collapse collapse-horizontal rounded">
+        <div id="collpase-div" style="width: 300px">
+          <h2 class="heading" id="brand">Chat App</h2>
+          <button class="btn" id="newgroup">New Group</button>
+          <button class="btn btn-danger" id="logout">Logout</button>
+          <div class="container">
+            <h4 id="groups">Your Groups</h4>
+            <ul class="list-group" id="group-list"></ul>
+          </div>
         </div>
+      </div>
 
-        <form id="messageForm">
-            <input type="text" id="message" name="message" placeholder="Enter your message" required><br><br>
-            <button id="sendButton" type="submit">Send</button>
-        </form>
-        <ul id="chats"></ul>
-
-        <button id="createGroup">Create Group</button>
-
-    </div>
-    <div id="group-container">
-        <h2>Groups</h2>
-        <ul id="group-list"></ul>
-    </div>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonwebtoken/9.0.0/index.js"></script> -->
-
+      <div class="container rounded w-100" id="chat-body">
+        <div id="chat-container">
+          <div class="header">
+            <h4 class="user-profile" id="profile"></h4>
+            <button class="btn" id="settings">Settings</button>
+            <div>
+              <button class="btn" id="info">Info</button>
+              <div class="container rounded" id="info-div">
+                <h3 id="member-count-heading">
+                Members: <span id="member-count"></span>
+              </h3>
+              <ul class="list-group" id="members-list"></ul>
+            </div>
+          </div>
+        </div>
+      <hr />
+      <div id="message-container">
+        <ul id="table-body"></ul>
+      </div>
+      <div class="form-container">
+        <div class="message-send">
+          <form method="POST" id="send-message">
+            
+            <input type="text" class="form-control" name="message" />
+            <button type="submit" class="btn send-btn">
+              <span class="material-symbols-rounded"> send </span>
+            </button>
+          </form>
+        </div>
+        </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- <script
+      src=""
+      integrity=""
+      crossorigin="anonymous">
+  </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-    <script src="chat.js"></script>
+    <script src="./chat.js"></script>
 </body>
 </html>

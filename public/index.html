@@ -9,7 +9,7 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url("./sigupImage.jpg");
+  background-image: url("./signup/sigupImage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -136,34 +136,34 @@ a:hover {
 
             <input type="submit" value="Sign Up">
         </form>
-        <p>Existing User? Login now - <a href="/login">Login</a></p>
+        <p>Existing User? Login now - <a href="./login/login.html">Login</a></p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
-    <script>
-        async function signup(e){
-            e.preventDefault();
+    <script src="./signup/signup.js"></script>
+        <!-- // async function signup(e){
+        //     e.preventDefault();
 
-            const signUpDetails={
-                name: e.target.name.value,
-                email: e.target.email.value,
-                mobile:e.target.mobile.value,
-                password: e.target.password.value
-            };
-            try{
-                // const response = await axios.post('/submit-form', signUpDetails);
-                const response = await axios.post('/user/signup', signUpDetails);
-                // console.log("Response:",response.data.response.name);
-                if (response.status===201){
-                    alert(response.data.name);
-                    alert('Signup successfull! Please login');
-                    window.location.href="login.html";
-                }
-            } catch(err){
-                console.log(err.message);
-                alert('User already signed up. Please go to login page.',err.message)
-            }
-        }
-        document.getElementById('signupform').addEventListener('submit',signup);
-    </script>
+        //     const signUpDetails={
+        //         name: e.target.name.value,
+        //         email: e.target.email.value,
+        //         mobile:e.target.mobile.value,
+        //         password: e.target.password.value
+        //     };
+        //     try{
+        //         const response = await axios.post("http://localhost:2200/user/signup", signUpDetails);
+        //         console.log("Response:",response.data.response.name);
+        //         if (response.status===201){
+        //             alert(response.data.name);
+        //             alert('Signup successfull! Please login');
+        //             window.location.href="../login/login.html";
+        //         }
+        //     } catch(err){
+        //         console.log(err.message);
+        //         alert('User already signed up. Please go to login page.',err.message);
+        //         window.location.href="../login/login.html";
+        //     }
+        // }
+        // document.getElementById('signupform').addEventListener('submit',signup); -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 </body>
 </html>

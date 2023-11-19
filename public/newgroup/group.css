@@ -1,0 +1,91 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #acb8c3; 
+  }
+  
+  main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  #menu {
+    margin: 0;
+  }
+  
+  #user-container {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+  #collpase-div {
+    width: 300px;
+  }
+  
+  .heading {
+    color: #007bff; /* Blue heading color */
+  }
+  
+  .btn {
+    margin-bottom: 10px;
+  }
+  
+  #groupwindow {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+  }
+  
+  #group-form,
+  #users-model {
+    margin-bottom: 20px;
+    margin-right: 20px;
+  }
+  
+  .form-label {
+    margin-top: 10px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; 
+    color: #ffffff;
+  }
+  
+  #message {
+    margin-top: 10px;
+    color: #dc3545;  
+  }
+  
+  #save {
+    background-color: #28a745; 
+    color: #ffffff;
+  }
+  
+  .list-group {
+    padding: 0;
+  }
+  
+  .list-group-item {
+    margin-bottom: 5px;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  }
+  

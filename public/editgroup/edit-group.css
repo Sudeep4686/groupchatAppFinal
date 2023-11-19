@@ -1,0 +1,95 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #aeb8c2; 
+}
+  
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
+  
+#menu {
+    margin: 0;
+  }
+  
+#user-container {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 10px;
+  }
+  
+#collapse-div {
+    width: 300px;
+  }
+  
+.heading {
+    color: #007bff; /* Blue heading color */
+  }
+  
+.btn {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #groupwindow {
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  #group-form {
+    padding-bottom: 20px;
+  }
+  
+  #groupNameinput {
+    margin-bottom: 15px;
+    margin-right: 10px;
+    width: 40%;
+  }
+  
+  #message {
+    margin-top: 10px;
+    color: #dc3545; 
+  }
+  
+.container-rounded {
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle shadow effect */
+  }
+  
+  #users-model {
+    width: 100px; 
+  }
+  
+#save {
+    background-color: #28a745; /* Green button color */
+    color: #ffffff;
+  }
+  
+  .list-group {
+    padding: 0;
+  }
+  
+  .list-group-item {
+    margin-bottom: 5px;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545; /* Red button color */
+    color: #ffffff;
+  }
+  

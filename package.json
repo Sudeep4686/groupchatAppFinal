@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "atob": "^2.1.2",
+    "aws-sdk": "^2.1499.0",
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
@@ -21,6 +22,7 @@
     "mysql2": "^3.6.2",
     "node": "^20.7.0",
     "nodemon": "^3.0.1",
-    "sequelize": "^6.33.0"
+    "sequelize": "^6.33.0",
+    "socket.io": "^4.7.2"
   }
 }

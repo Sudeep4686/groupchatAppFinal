@@ -3,9 +3,7 @@ const router = express.Router();
 const chatC = require('../controllers/chatC');
 const userAuth = require('../middleware/authorisation');
 
-router.post('/Chats',userAuth.authenticate,chatC.saveMessage);
-router.get('/chat',userAuth.authenticate,chatC.getMessage);
-router.get('/group',userAuth.authenticate,chatC.getGroupList);
-router.post('/group',userAuth.authenticate,chatC.createGroup);
+router.post('/chats',userAuth.authenticate,chatC.saveMessage);
+router.get('/chats',userAuth.authenticate,chatC.getMessage);
 
 module.exports=router;
