@@ -1,95 +1,129 @@
-body {
-    font-family: 'Poppins', sans-serif;
+
+* {
     margin: 0;
     padding: 0;
-    background-color: #aeb8c2; 
-}
+    box-sizing: border-box;
+  }
   
-main {
+  /* Body styling */
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #a8b3bf;
+    color: #333;
+  }
+  
+  /* Main container styling */
+  main {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
   }
   
-#menu {
-    margin: 0;
+  /* Menu button styling */
+  #menu {
+    margin: 10px;
   }
   
-#user-container {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
+  /* User container styling */
+  #user-container {
+    margin: 10px;
+  }
+  
+  #collapse-div {
+    background-color: #fff;
     padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
   }
   
-#collapse-div {
-    width: 300px;
+  #brand {
+    color: #0044ff;
   }
   
-.heading {
-    color: #007bff; /* Blue heading color */
-  }
-  
-.btn {
+  #logout {
     margin-top: 10px;
+  }
+  
+  #groups {
+    margin-top: 20px;
     margin-bottom: 10px;
   }
   
+  /* Group window styling */
   #groupwindow {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
+    margin: 10px;
     padding: 20px;
+    background-color: #eee;
+    border: 1px solid #ddd;
   }
   
   #group-form {
-    padding-bottom: 20px;
+    margin-bottom: 20px;
   }
   
-  #groupNameinput {
-    margin-bottom: 15px;
-    margin-right: 10px;
-    width: 40%;
+  /* Form styling */
+  form {
+    margin-top: 20px;
   }
   
-  #message {
-    margin-top: 10px;
-    color: #dc3545; 
+  .form-label {
+    font-weight: 600;
   }
   
-.container-rounded {
-    display: flex;
-    justify-content: space-around;
-    border-radius: 10px;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-  }
-  
-  .shadow-sm {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a subtle shadow effect */
-  }
-  
+  /* Container for users model styling */
   #users-model {
-    width: 100px; 
+    padding: 10px;
+    border: 1px solid #ddd;
   }
   
-#save {
-    background-color: #28a745; /* Green button color */
-    color: #ffffff;
+  /* Button styling */
+
+  .btn {
+    background-color: #037dff;
+    color: #fff;
+    padding: 5px 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    justify-content: center;
+    font-size: small;
   }
   
+  .btn-danger {
+    background-color: #dc3545;
+  }
+  
+  /* List styling */
   .list-group {
+    list-style: none;
     padding: 0;
   }
   
   .list-group-item {
     margin-bottom: 5px;
+    padding: 5px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: medium;
+    font-weight: bolder;
+    color: rgb(252, 78, 3);
   }
   
-  .btn-danger {
-    background-color: #dc3545; /* Red button color */
-    color: #ffffff;
+  /* Responsive styling */
+  @media (max-width: 768px) {
+    #user-container {
+      width: 100%;
+    }
   }
   
+  @media (min-width: 769px) {
+    #user-container {
+      width: 300px;
+    }
+  }
+/* Button styling for buttons within the users model */
+#users-model #save {
+    background-color: #dc3545;
+  }
+    

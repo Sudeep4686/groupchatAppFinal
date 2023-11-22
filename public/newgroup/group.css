@@ -1,91 +1,104 @@
+/* Global styles */
+
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #acb8c3; 
+    font-family: Arial, sans-serif;
+    background-color: #d8d8d9;
   }
   
-  main {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  #menu {
-    margin: 0;
-  }
-  
-  #user-container {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
+  .container {
+    margin: 20px;
     border-radius: 10px;
-    padding: 10px;
   }
   
-  #collpase-div {
-    width: 300px;
-  }
-  
-  .heading {
-    color: #007bff; /* Blue heading color */
-  }
-  
-  .btn {
-    margin-bottom: 10px;
-  }
-  
-  #groupwindow {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
-    padding: 20px;
-    width: 50%;
-  }
-  
-  #group-form,
-  #users-model {
-    margin-bottom: 20px;
-    margin-right: 20px;
-  }
-  
-  .form-label {
-    margin-top: 10px;
-  }
-  
-  .form-control {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-  }
-  
-  .btn-danger {
-    background-color: #dc3545; 
-    color: #ffffff;
-  }
-  
-  #message {
-    margin-top: 10px;
-    color: #dc3545;  
-  }
-  
-  #save {
-    background-color: #28a745; 
-    color: #ffffff;
-  }
-  
-  .list-group {
-    padding: 0;
-  }
-  
-  .list-group-item {
-    margin-bottom: 5px;
+  .rounded {
+    border-radius: 8px;
   }
   
   .shadow-sm {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
   
+  /* Header styles */
+  #brand {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  #logout {
+    margin-bottom: 10px;
+    background-color: rgb(217, 23, 23);
+  }
+  
+  /* Menu button styles */
+  .btn {
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Group form styles */
+  #group-form {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    padding-left: 20px;
+  }
+  
+  .form-control {
+    width: 70%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  /* User list styles */
+  .list-group {
+    list-style-type: none;
+    padding:0%;
+  }
+  
+  .list-group-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #046f1d;
+    color: #fff;
+    border-radius: 4px;
+    width: 70%;
+  }
+  .list-group-item span {
+    font-family: Arial, sans-serif; /* Change the font family */
+    color: #ff5733; /* Change the color */
+    font-size: larger;
+  }
+  
+  .btn.add {
+    margin-top: 5px;
+  }
+  
+  /* Save button styles */
+  #save {
+    background-color: #28a745;
+  }
+
+  #save:hover {
+    background-color: #218838;
+  }
+  
+  #menu {
+    display: none;
+  }

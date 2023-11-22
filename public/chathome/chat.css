@@ -1,109 +1,244 @@
-body {
-    background-color: #bfcbd7c4;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    }
-  
-main {
-    display: flex;
-    }
-  
-#user-container {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    width: 40%;
-    }
-  
-#collpase-div {
-    padding: 10px;
-    }
-  
-#brand {
-    color: #057df5;
-    }
-  
-.btn {
-    margin-bottom: 5px;
-    }
-  
-#chat-body {
-    background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
-    }
-  
 .header {
     display: flex;
+    align-items: flex-end;
     justify-content: space-between;
-    align-items: center;
-    }
+  }
   
-.user-profile {
-    color: #007bff;
-    }
+  .user-profile {
+    width: 80%;
+    color: #245984;
+  }
   
-#info {
-    margin-top: 10px;
-    }
+  #info {
+    float: right;
+    width: fit-content;
+    position: relative;
+  }
   
-#info-div {
+  #settings {
+    margin-left: 30px;
+    width: fit-content;
+    display: none;
+  }
+  
+  #info-div {
+    width: 25%;
+    display: none;
+    position: absolute;
     background-color: #ffffff;
-    border: 1px solid #ced4da;
-    border-radius: 10px;
+    z-index: 10;
+    top: 50px;
+    right: 20px;
+    overflow: auto;
+  }
+  #member-count-heading {
+    font-size: 1rem;
+    text-align: center;
+  }
+  
+  .status {
+    font-size: 0.9rem;
+    float: right;
+  }
+  
+  .member-name {
+    font-size: 1rem;
+  }
+  
+  .admin {
+    color: #47ed31;
+  }
+  
+  .member {
+    color: #778899;
+  }
+  
+  #chat-container {
+    width: 100%;
+    margin-left: 1rem;
+  }
+  
+  #table-body {
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  #message-container {
+    height: 75%;
+    overflow-y: scroll;
+    /* background-color: #f7f7f7; */
+  }
+  
+  #chat-body {
+    position:relative;
+    height: 20vh;
+    display: flex;
+    background-color: antiquewhite;
+  }
+  
+  .botName {
+    color: #0171cd;
+  }
+  
+  .botDiv {
+    text-align: center;
+    font-size: 0.8rem;
     margin-top: 10px;
-    padding: 10px;
-    }
+  }
   
-#member-count-heading {
-    color: #007bff;
-    }
+  .botMessage {
+    color: #4e5358;
+  }
   
-.list-group {
-    margin-top: 10px;
-}
+  #send-message {
+    margin-top: 10%;
+    width: 100%;
+    display: flex;
+  }
   
-#message-container {
-    border: 1px solid #a5b3c0;
-    border-radius: 10px;
-    margin: 10px;
-    padding: 10px;
+  .message-send {
+    position: relative;
+    display: flex;
+    bottom: 10px;
+    left: 7%;
     width: 90%;
-    }
+  }
   
-.form-container {
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    }
+  .message-send input {
+    display: inline;
+    width: 90%;
+    height: 80%;
+    border: 2px solid #0171cd;
+  }
   
-.message-send {
-    display: flex;
-    width:auto
-    }
+  .message-send button {
+    display: inline;
+    height: fit-content;
+    padding: 4px;
+    margin-top: 0;
+    margin-left: 4px;
+  }
   
-.form-control {
-    flex: 1;
-    margin-right: 5px;
-    width:100%
-    }
+  #file {
+    display: none;
+  }
   
-.send-btn {
-    background-color: #007bff;
+  .attach-pin {
+    cursor: pointer;
+    background-color: #0171cd;
     color: #ffffff;
-    align-self: stretch;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  
+  .message-send span {
+    font-weight: 500;
+    font-size: x-large;
+  }
+  
+  .others {
+    background-color: #f9fcff;
+    width: fit-content;
+    margin-top: 0.5rem;
+    padding: 5px;
+  }
+  
+  .you-list {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5px;
+  }
+  
+  .you {
+    background-color: #74b7ee;
+    color: #ffffff;
+    margin-top: 1%;
+    padding: 5px;
+  }
+  
+  .spanName {
+    display: block;
+    font-size: 0.8rem;
+    color: #0171cd;
+  }
+  
+  .you img {
+    margin-right: 0;
+  }
+  
+  .chat-image img {
+    width: 225px;
+    border-radius: 10px;
+  }
+  
+  /* Mobile View */
+  
+  @media (max-width: 900px) {
+    #info-div {
+      width: 60%;
+    }
+    .message-send input {
+      width: 70%;
+      height: 60%;
+    }
+    .attach-pin {
+      height: fit-content;
+    }
+    .message-send button {
+      width: fit-content;
+      height: 35px;
+      margin-top: 10px;
+    }
+    .send-btn {
+      width: 20%;
+    }
+    #user-container {
+      top: 10%;
+    }
+    #menu {
+      display: inline-block;
+      position: inherit;
+      width: fit-content;
+    }
+    #chat-body {
+      display: flex;
+      width: 90vw;
+      height: 85vh;
+      margin: 0;
+      padding: 16px;
     }
   
-#table-body {
-    list-style-type: none;
-    padding: 0;
-    width: auto
-}
+    #settings {
+      margin-right: 5px;
+    }
+  }
   
+  /* Scroll functions */
   
+  #message-container::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+  
+  #message-container::-webkit-scrollbar-track {
+    background: #f1f1f100;
+  }
+  
+  #message-container::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #d1bb32;
+    outline: 1px solid #ffffff;
+  }
+  
+  #info-div::-webkit-scrollbar {
+    width: 0.2rem;
+  }
+  
+  #info-div::-webkit-scrollbar-track {
+    background: #f1f1f100;
+  }
+  
+  #info-div::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #7fcd01;
+    outline: 1px solid #ffffff;
+  }

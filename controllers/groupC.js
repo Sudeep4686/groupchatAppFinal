@@ -1,4 +1,3 @@
-// const Groups = require('../models/groups');
 const Chat = require('../models/chat');
 const User = require('../models/user');
 const GroupChat = require("../models/groupchat");
@@ -31,81 +30,6 @@ exports.getGroups = async(req,res,next)=>{
     }
 };
 
-// exports.getMembers = async(req,res,next)=>{
-//     const gpId = req.query.gpId;
-//     console.log("GPID",gpId);
-//     try{
-//         //Find all admin members
-//         const groupAdminMembers = await GroupChat.findAll({
-//             where:{ id : gpId},
-//             attributes:[],
-//             include:[
-//                 {
-//                     model:User,
-//                     attributes:["id","name"],
-//                     include:[
-//                         {
-//                             model:Admin,
-//                             where:{ groupChatId:gpId},
-//                         },
-//                     ],
-//                 },
-//             ],
-//         });
-//         console.log("Group Admin Members : ",groupAdminMembers);
-//         const adminUserIds = groupAdminMembers.map((user)=>{
-//             return user.id;
-//         });
-//         // const adminUserIds = groupAdminMembers.users ? groupAdminMembers.users.map((user) => user.id) : [];
-
-//         console.log(adminUserIds,"Admin User Ids:");
-//         // find all other members
-//         const groupOtherMembers = await GroupChat.findOne({
-//             where:{ id : gpId },
-//             attributes:[],
-//             include:[
-//                 {
-//                     model:User,
-//                     attributes:["id","name"],
-//                     where:{
-//                         id:{ [Op.notIn]:adminUserIds },
-//                     },
-//                 },
-//             ],
-//         });
-//         const adminmembers = groupAdminMembers.map((user)=>{
-//             return{
-//                 id:user.id,
-//                 name:user.name,
-//                 isAdmin : true,
-//             };
-//         });
-//         let othermembers;
-//         const otherMemberIds = [];
-//         if (groupOtherMembers){
-//             othermembers = groupOtherMembers.users.map((user)=>{
-//                 otherMemberIds.push(user.id);
-//                 return {
-//                     id : user.id,
-//                     name: user.name,
-//                     isAdmin : false,
-//                 };
-//             });
-//         } else {
-//             othermembers = [];
-//         }
-//         members = [...adminUserIds, ...otherMemberIds];
-//         res.json({
-//             members:[...adminmembers, ...othermembers],
-//             success:true,
-//         });
-//     }catch(error){
-//         console.log(error);
-//         res.status(500).json({
-//             success:false,
-//         });
-//     }
-// };
 
 exports.getMembers = async (req, res, next) => {
     const gpId = req.query.gpId;

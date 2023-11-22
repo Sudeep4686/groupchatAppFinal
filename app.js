@@ -7,6 +7,7 @@ const axios = require('axios');
 const cors = require('cors');
 const socketio = require("socket.io");
 const http = require("http");
+var CronJob = require("cron").CronJob;
 
 const app = express();
 const server = http.createServer(app);
@@ -20,6 +21,7 @@ const sequelize = require('./util/database');
 const {getuserdetails}=require("./util/user-base");
 const { addChat } = require("./util/chat-base");
 const {storeMultiMedia} = require("./util/multimedia");
+const {moveChatToArchive} = require("./util/cron");
 
 const userRoutes = require('./routes/users');
 const ChatsRoutes = require('./routes/chat');
@@ -31,6 +33,7 @@ const User = require('./models/user');
 const Chat = require('./models/chat');
 const GroupChat = require('./models/groupchat');
 const Admin = require('./models/admin');
+const ArchiveChat = require("./models/archiveChats");
 
 app.use('/user', userRoutes);
 app.use('/chat',ChatsRoutes);
@@ -42,16 +45,32 @@ app.use("/admin",adminRoutes);
 app.use(express.static(path.join(__dirname, "public")));
 
 User.hasMany(Chat);
-Chat.belongsTo(User)
+Chat.belongsTo(User);
+
+User.hasMany(ArchiveChat);
+ArchiveChat.belongsTo(User);
 
 GroupChat.hasMany(Chat);
 Chat.belongsTo(GroupChat);
+
+GroupChat.hasMany(ArchiveChat);
+ArchiveChat.belongsTo(GroupChat);
 
 User.belongsToMany(GroupChat,{through:"usergroups" });
 GroupChat.belongsToMany(User,{through:"usergroups"});
 
 GroupChat.hasMany(Admin);
 User.hasMany(Admin);
+
+//CRON JOB
+const job = new CronJob(
+    "0 0 * * *",
+    moveChatToArchive,
+    null,
+    true,
+    "Asia/Kolkata"
+);
+job.start();
 
 io.on("connection",(socket)=>{
     socket.on("joinRoom",async({userId,gpId,userName})=>{
@@ -63,9 +82,11 @@ io.on("connection",(socket)=>{
                 message:"Welcome to chat app",
                 gpId:-1,
                 name:userName,
+                userName:userName,
             });
             socket.to(gpId).emit("message",{
                 userId:-1,
+                userName:userName,
                 message:`${userName} has connected to the chat`,
                 gpId:-1,
             });
